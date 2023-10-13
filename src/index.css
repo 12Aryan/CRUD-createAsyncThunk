@@ -3,3 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+.color{
+  /* --white: #ffffff; */
+  color: white
+}
+body{
+  background-color: black;
+  color: rgb(105, 104, 104);
+}
+.bg-gray{
+  /* background-color: #198754 !important; */
+}

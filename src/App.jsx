@@ -1,25 +1,20 @@
-import { useEffect } from "react"
+import Navbar from "./shared/Navbar/Navbar";
+import Create from "./features/users/components/create/create";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ErrorPage from "./shared/Error/Error-page";
 
 const App = () => {
-  console.log('componnet')
-  const fetchData = async()=>{
-
-  let response = await fetch("https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001")
-  response = await response.json()
-  console.log("fetch function");
-  console.log(response);
-  }
-
-  fetchData()
-  //  useEffect(()=>{
-  //   fetchData()
-  //  }, [])
   return (
-    <div>
-    {console.log("jsx")}
-      app
-    </div>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+      <Route path="*"  element={<ErrorPage/>} />
+        <Route element={<Navbar />}>
+        
+          <Route path="/" element={<Create />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
