@@ -11,6 +11,9 @@ body {
   background-color: black;
   color: rgb(105, 104, 104);
 }
+.active-route{
+  border-bottom: 1px solid #0d6efd;;
+}
 
 .card-wrapper {
   max-height: 90vh;

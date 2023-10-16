@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Post, get } from "../../../apiService/apiService";
+import { Delete, Post, get } from "../../../apiService/apiService";
 
 //create async actions
 
@@ -17,20 +17,24 @@ export const createUser = createAsyncThunk("/createUser", async (userData) => {
 export const getUsers = createAsyncThunk("/getUsers", async () => {
   try {
     const response = get();
-    console.log("-->>", response);
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 //Update users in DB
 
 //Delete users in DB
+export const deleteUser= createAsyncThunk("/deleteUser", async(userId)=>{
+const response = Delete(userId)
+console.log("delete response--",response);
+return response
+})
 
 
 //Initial State
 const initialState = {
-  users: [],
+  users: [],  
   loading: false,
   error: null,
 };
@@ -61,8 +65,7 @@ export const usersSlice = createSlice({
       state.loading = false;
       state.users = action.payload;
     });
-    builder.addCase(getUsers.rejected, (state, action) => {
-      console.log(action, "error");
+    builder.addCase(getUsers.rejected, (state) => {
       state.error = "error";
     });
   },

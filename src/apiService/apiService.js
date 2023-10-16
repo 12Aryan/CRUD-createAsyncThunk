@@ -11,16 +11,20 @@ export const Post = async (data) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  const response = await result.json()
-  return response
+  const response = await result.json();
+  return response;
 };
 export const Put = () => {};
-export const Delete = async(data) => {
-    const result = await fetch(url, {
-        method: "DELETE",
-        headers:{"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    })
-    const response = await result
-    return response
+export const Delete = async (userId) => {
+  const result = await fetch(
+    `https://65290c3955b137ddc83e1b81.mockapi.io/api/v1/crud/${userId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const response = await result.json();
+  return response;
 };

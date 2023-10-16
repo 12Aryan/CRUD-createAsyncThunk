@@ -1,6 +1,19 @@
-import { Link, Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { getUserList, getUsers } from "../../features/users/redux/usersSlice";
+import { useEffect } from "react";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  let count = useSelector(getUserList)
+  const location = useLocation();
+  console.log("-->>", location.pathname.split("/"));
+  const pathData = location.pathname.split("/");
+  const currentPath = `/${pathData[1]}`;
+  console.log("log", count.users.length);
+  useEffect(()=>{dispatch(getUsers())},[])
+
+  const totalPostCount =   count.users.length
   return (
     <>
       <div>
@@ -26,14 +39,14 @@ const Navbar = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" to='/'>
+                  <Link className={`${currentPath==="/"? 'active-route': ''} nav-link active`} to='/'>
                     Create Post{" "}
                     </Link>
                   
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link active" to='/users'>
-                    All Posts{" "}
+                <Link className={`${currentPath==="/users"? 'active-route': ''} nav-link active`} to='/users'>
+                    All Posts ({totalPostCount})
                     </Link>
                 </li>
               </ul>

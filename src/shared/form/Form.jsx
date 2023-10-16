@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../features/users/redux/usersSlice";
+import { createUser, getUsers } from "../../features/users/redux/usersSlice";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
@@ -10,40 +10,32 @@ const Form = () => {
     name: "",
     email: "",
     age: "",
-    gender: null,
+    gender: "",
   });
-  // const [disable, setDisable] = useState(true);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const getUserData = (e) => {
-    console.log(e.target.value);
     setUserData((prevstate) => ({
       ...prevstate,
       [e.target.name]: e.target.value,
     }));
+    const isValid = Object.values(userData).every((value) => value !== "" );
+    console.log("isvalide", isValid);
+    setIsFormValid(isValid);
+
   };
-  const submitUserData = (e) => {
+  const submitUserData = async(e) => {
     e.preventDefault();
-    dispatch(createUser(userData));
+     await dispatch(createUser(userData));
     setUserData({
       name: "",
       email: "",
       age: "",
-      gender: null,
+      gender: "",
     });
-    // navigate("/users");
+   await dispatch(getUsers())
+    navigate("/users");
   };
-  // console.log("disabled", disable);
-  // useEffect(() => {
-  //   //btn disable
-  //   setDisable(
-  //     userData.name != "" &&
-  //       userData.email != "" &&
-  //       userData.age != "" &&
-  //       userData.gender != null
-  //       ? true
-  //       : false
-  //   );
-  // }, [userData]);
 
   return (
     <div className="custom-90vh d-flex justify-content-center align-items-center">
@@ -101,7 +93,7 @@ const Form = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-outline-primary mt-2">
+        <button type="submit" className="btn btn-outline-primary mt-2" disabled={!isFormValid}>
           Submit
         </button>
       </form>
