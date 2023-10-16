@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -26,14 +26,15 @@ const Navbar = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <div className="nav-link active" aria-current="page" href="#">
+                  <Link className="nav-link active" to='/'>
                     Create Post{" "}
-                  </div>
+                    </Link>
+                  
                 </li>
                 <li className="nav-item">
-                  <div className="nav-link active" aria-current="page" href="#">
-                    All post
-                  </div>
+                <Link className="nav-link active" to='/users'>
+                    All Posts{" "}
+                    </Link>
                 </li>
               </ul>
 
