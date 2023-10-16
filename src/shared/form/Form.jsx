@@ -1,31 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../features/users/redux/usersSlice";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     age: "",
     gender: null,
   });
+  const [disable, setDisable] = useState(true);
 
-  const getInputData = (e) => {
+  const getUserData = (e) => {
     console.log(e.target.value);
     setUserData((prevstate) => ({
       ...prevstate,
       [e.target.name]: e.target.value,
     }));
   };
-  console.log('userData--', userData)
+  const submitUserData = (e) => {
+    e.preventDefault();
+    dispatch(createUser(userData));
+    setUserData({
+      name: "",
+      email: "",
+      age: "",
+      gender: null,
+    });
+    // navigate("/users");
+  };
+  console.log("disabledd", disable);
+  // useEffect(() => {
+  //   //btn disable
+  //   setDisable(
+  //     userData.name != "" &&
+  //       userData.email != "" &&
+  //       userData.age != "" &&
+  //       userData.gender != null
+  //       ? true
+  //       : false
+  //   );
+  // }, [userData]);
+
   return (
     <div>
-      <form className="w-25 mx-auto">
+      <form className="w-25 mx-auto" onSubmit={submitUserData}>
         <div className="mb-3">
           <label className="form-label">Name</label>
           <input
             type="text"
             name="name"
             className="form-control"
-            onChange={getInputData}
+            value={userData.name}
+            onChange={getUserData}
           />
         </div>
         <div className="mb-3">
@@ -34,7 +64,8 @@ const Form = () => {
             type="email"
             name="email"
             className="form-control"
-            onChange={ getInputData}
+            value={userData.email}
+            onChange={getUserData}
           />
         </div>
         <div className="mb-3">
@@ -43,7 +74,8 @@ const Form = () => {
             type="number"
             name="age"
             className="form-control"
-            onChange={ getInputData}
+            value={userData.age}
+            onChange={getUserData}
           />
         </div>
         <div className="d-flex gap-4">
@@ -52,8 +84,8 @@ const Form = () => {
               className="form-check-input bg-gray"
               type="radio"
               name="gender"
-              value='male'
-              onChange={ getInputData}
+              value={"male"}
+              onChange={getUserData}
             />
             <label className="form-check-label ">Male</label>
           </div>
@@ -62,8 +94,8 @@ const Form = () => {
               className="form-check-input bg-gray"
               type="radio"
               name="gender"
-              value='female'
-              onChange={ getInputData}
+              value="female"
+              onChange={getUserData}
             />
             <label className="form-check-label ">Female</label>
           </div>

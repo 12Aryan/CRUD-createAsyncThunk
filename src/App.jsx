@@ -1,8 +1,8 @@
 import Navbar from "./shared/Navbar/Navbar";
-import Create from "./features/users/components/create/create";
+import Create from "./features/users/components/create/Create";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorPage from "./shared/Error/Error-page";
-import Users from "./features/users/components/Users";
+import Read from "./features/users/components/Read/Read";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
         <Route path="*" element={<ErrorPage />} />
         <Route element={<Navbar />}>
           <Route path="/" element={<Create />} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/users" element={<Read />} />
         </Route>
       </Routes>
     </BrowserRouter>

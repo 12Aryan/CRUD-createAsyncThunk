@@ -1,29 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+const url = "https://65290c3955b137ddc83e1b81.mockapi.io/api/v1/crud";
 
-// export const createUser= createAsyncThunk("/createUser", async()=>{
-//     const result = fetch('')
-// })
-
-export const getUsers = createAsyncThunk("/createUser", async () => {
-    try{
-  const result = await fetch(
-    "https://65290c3955b137ddc83e1b81.mockapi.io/api/v1/crud"
-  );
-  console.log(result);
+//Create Users in DB
+export const createUser = createAsyncThunk("/createUser", async (userData) => {
+  const result = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  });
   const response = await result.json();
-  return response;
-}
-catch(err){
-    console.log(err);
-}
+  console.log("post response-->>", response);
 });
 
+//
+
+//Get users from DB
+export const getUsers = createAsyncThunk("/getUsers", async () => {
+  try {
+    const result = await fetch(url);
+    console.log(result);
+    const response = await result.json();
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+});
+//Update users in DB
+
+//Delete users in DB
+
+//Initial State
 const initialState = {
   users: [],
   loading: false,
   error: null,
 };
+
+//Create SLice
 
 export const usersSlice = createSlice({
   name: "users",
@@ -38,8 +52,8 @@ export const usersSlice = createSlice({
       state.users = action.payload;
     });
     builder.addCase(getUsers.rejected, (state, action) => {
-        console.log(action, 'error');
-      state.error= "error"
+      console.log(action, "error");
+      state.error = "error";
     });
   },
 });
@@ -47,7 +61,7 @@ export const usersSlice = createSlice({
 //selectors
 export const getUserList = (state) => state.user;
 
-//actions export
+//Reducer actions export
 
-// root reducer export
+// Root reducer export
 export default usersSlice.reducer;
