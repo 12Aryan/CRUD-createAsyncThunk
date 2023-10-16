@@ -1,26 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Post, get } from "../../../apiService/apiService";
 
-const url = "https://65290c3955b137ddc83e1b81.mockapi.io/api/v1/crud";
+//create async actions
 
 //Create Users in DB
 export const createUser = createAsyncThunk("/createUser", async (userData) => {
-  const result = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userData),
-  });
-  const response = await result.json();
-  console.log("post response-->>", response);
+  try {
+    const response = Post(userData);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
 });
-
-//
 
 //Get users from DB
 export const getUsers = createAsyncThunk("/getUsers", async () => {
   try {
-    const result = await fetch(url);
-    console.log(result);
-    const response = await result.json();
+    const response = get();
+    console.log("-->>", response);
     return response;
   } catch (err) {
     console.log(err);
@@ -44,10 +41,22 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    //CREATE users case
+    builder.addCase(createUser.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      state.loading = false;
+    });
+    builder.addCase(createUser.rejected, (state, action) => {
+      state.error("error");
+    });
+
+    //GET users case
     builder.addCase(getUsers.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getUsers.fulfilled, (state, action) => {
+    builder.addCase(getUsers.fulfilled, (state, action) => {  
       state.loading = false;
       state.users = action.payload;
     });
