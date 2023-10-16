@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <>
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-navbar">
           <div className="container-fluid">
             <div className="navbar-brand" href="#">
               CRUD - AsyncThunk

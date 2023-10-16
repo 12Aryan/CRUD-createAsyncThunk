@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../features/users/redux/usersSlice";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const Form = () => {
     age: "",
     gender: null,
   });
-  const [disable, setDisable] = useState(true);
+  // const [disable, setDisable] = useState(true);
 
   const getUserData = (e) => {
     console.log(e.target.value);
@@ -32,7 +32,7 @@ const Form = () => {
     });
     // navigate("/users");
   };
-  console.log("disabledd", disable);
+  // console.log("disabled", disable);
   // useEffect(() => {
   //   //btn disable
   //   setDisable(
@@ -46,7 +46,7 @@ const Form = () => {
   // }, [userData]);
 
   return (
-    <div>
+    <div className="custom-90vh d-flex justify-content-center align-items-center">
       <form className="w-25 mx-auto" onSubmit={submitUserData}>
         <div className="mb-3">
           <label className="form-label">Name</label>
@@ -78,7 +78,7 @@ const Form = () => {
             onChange={getUserData}
           />
         </div>
-        <div className="d-flex gap-4">
+        <div className="d-flex flex-wrap gap-4">
           <div className="form-check">
             <input
               className="form-check-input bg-gray"

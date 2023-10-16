@@ -27,6 +27,7 @@ export const getUsers = createAsyncThunk("/getUsers", async () => {
 
 //Delete users in DB
 
+
 //Initial State
 const initialState = {
   users: [],
@@ -42,13 +43,13 @@ export const usersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     //CREATE users case
-    builder.addCase(createUser.pending, (state, action) => {
+    builder.addCase(createUser.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
       state.loading = false;
     });
-    builder.addCase(createUser.rejected, (state, action) => {
+    builder.addCase(createUser.rejected, (state) => {
       state.error("error");
     });
 
