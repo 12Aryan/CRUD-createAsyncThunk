@@ -9,8 +9,11 @@ const Users = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const [deleteUserData, setDeleteUserData] = useState({userId: null,
-  userName:null});
+
+  const [deleteUserData, setDeleteUserData] = useState({
+    userId: null,
+    userName: null,
+  });
 
   //   console.log("loading--", loading);
 
@@ -21,7 +24,7 @@ const Users = () => {
   }, []);
   const openDeleteModal = (userName, userId) => {
     setIsDeleteModalOpen(true);
-    setDeleteUserData({userName, userId});
+    setDeleteUserData({ userName, userId });
   };
   const handleUserDelete = () => {
     dispatch(deleteUser(deleteUserData.userId));
@@ -34,15 +37,13 @@ const Users = () => {
         <DeleteModal
           setIsDeleteModalOpenProp={setIsDeleteModalOpen}
           handleDeleteProp={handleUserDelete}
-          deleteUserDataProp = {deleteUserData}
+          deleteUserDataProp={deleteUserData}
         />
       )}
       <div className="">
-        {users.length === 0 ? (
-          <h6>No data found</h6>
-        ) : loading ? (
+        {loading ? (
           <div
-            className=" d-flex justify-content-center align-items-center custom-90vh"
+            className="d-flex justify-content-center align-items-center custom-90vh"
             style={{ color: "rgb(194, 193, 193)" }}
           >
             <h1>Loading....</h1>
@@ -50,38 +51,39 @@ const Users = () => {
         ) : error != null ? (
           <h1>{"error"}</h1>
         ) : (
-          <div className="row px-4 py-5">
-            {users &&
-              users?.length > 0 &&
-              users?.map((user, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0"
-                    // style={{ width: "18rem" }}
-                  >
-                    <div className="card-body bg-dark  m-2">
-                      <h6 className="card-title">{user.name}</h6>
-                      <h6 className="card-title">{user.email}</h6>
-                      <h6 className="card-title">{user.gender}</h6>
-                      <div className="d-flex my-3 gap-2">
-                        <button
-                          className="btn btn-outline-primary"
-                          onClick={() => setIsOpen(true)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn btn-outline-danger"
-                          onClick={() => openDeleteModal(user.name,user.id)}
-                        >
-                          Delete
-                        </button>
-                      </div>
+          <div className="row px-4 py-5 content-wrapper">
+            {users && users.length > 0 ? (
+              users.map((user, index) => (
+                <div
+                  key={index}
+                  className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0"
+                >
+                  <div className="card-body bg-dark  m-2">
+                    <h6 className="card-title">{user.name}</h6>
+                    <h6 className="card-title">{user.email}</h6>
+                    <h6 className="card-title">{user.gender}</h6>
+                    <div className="d-flex my-3 gap-2">
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() => setIsOpen(true)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-outline-danger"
+                        onClick={() => openDeleteModal(user.name, user.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))
+            ) : (
+              <div className="d-flex justify-content-center ">
+                <h1>No data found</h1>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root{
+  --primary-color: #0d6efd
+}
 .color {
   /* --white: #ffffff; */
   color: white;
@@ -12,14 +15,14 @@ body {
   color: rgb(105, 104, 104);
 }
 .active-route {
-  border-bottom: 1px solid #0d6efd;
+  border-bottom: 1px solid var(--primary-color);
 }
 
-.card-wrapper {
+.content-wrapper {
   max-height: 90vh;
   overflow-y: scroll;
-  overflow-x: hidden;
 }
+
 
 .custom-90vh {
   height: 90vh !important;
@@ -50,5 +53,5 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #0d6efd;
+  background: var(--primary-color);
 }

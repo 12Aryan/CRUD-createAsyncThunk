@@ -1,18 +1,18 @@
 import "./DeleteModal.css";
 const DeleteModal = ({ setIsDeleteModalOpenProp, handleDeleteProp, deleteUserDataProp }) => {
   return (
-    <div className="modal-parent-container">
-      <div className="modal-child-container bg-dark">
-        <div className="child-modal-header">
+    <div className="delete-modal-parent-container">
+      <div className="delete-modal-child-container bg-dark">
+        <div className="delete-child-modal-header">
           {" "}
           <span
-            className="close"
+            className="delete-close-btn"
             onClick={() => setIsDeleteModalOpenProp(false)}
           >
             &times;
           </span>
         </div>
-        <div className="child-modal-body">
+        <div className="delete-child-modal-body">
          { `Are you sure you want to delete "${deleteUserDataProp.userName}"`}
         </div>
         <div className="d-flex justify-content-center gap-3">

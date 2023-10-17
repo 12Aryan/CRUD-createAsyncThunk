@@ -1,4 +1,4 @@
-.modal-parent-container {
+.delete-modal-parent-container {
   display: flex;
   justify-content: center;
   top: 0;
@@ -9,16 +9,16 @@
   z-index: 999;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.95);
-  height: 116vh;
+  height: 100%;
 }
-.modal-child-container {
+.delete-modal-child-container {
   padding: 1rem;
   width: 30%;
   height: 30%;
   color: white;
   border-radius: 12px;
 }
-.child-modal-body {
+.delete-child-modal-body {
   height: inherit;
   display: flex;
   justify-content: center;
@@ -27,15 +27,15 @@
 }
 .btn-wrapper-div {
 }
-.close {
+.delete-close-btn {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.delete-close-btn:hover,
+.delete-close-btn:focus {
   color: #dc3545;
   text-decoration: none;
   cursor: pointer;
@@ -48,31 +48,31 @@
 1201px and more —  Extra large screens, TV */
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .modal-child-container {
+  .delete-modal-child-container {
     width: 75%;
   }
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
-  .modal-child-container {
+  .delete-modal-child-container {
     width: 55%;
   }
 }
 
 @media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
-  .modal-child-container {
+  .delete-modal-child-container {
     width: 50%;
   }
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
-  .modal-child-container {
+  .delete-modal-child-container {
     width: 40%;
   }
 }
 
 @media only screen and (min-device-width: 1201px) and (max-device-width: 1500px) {
-  .modal-child-container {
+  .delete-modal-child-container {
     width: 35%;
   }
 }
