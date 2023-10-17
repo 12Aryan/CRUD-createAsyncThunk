@@ -11,13 +11,14 @@ body {
   background-color: black;
   color: rgb(105, 104, 104);
 }
-.active-route{
-  border-bottom: 1px solid #0d6efd;;
+.active-route {
+  border-bottom: 1px solid #0d6efd;
 }
 
 .card-wrapper {
   max-height: 90vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .custom-90vh {
@@ -25,4 +26,26 @@ body {
 }
 .card-title {
   color: white !important;
+}
+.bg-black{
+  background-color: black !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(105, 104, 104);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #003584;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0d6efd;
 }

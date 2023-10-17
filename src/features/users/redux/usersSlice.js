@@ -25,16 +25,18 @@ export const getUsers = createAsyncThunk("/getUsers", async () => {
 //Update users in DB
 
 //Delete users in DB
-export const deleteUser= createAsyncThunk("/deleteUser", async(userId)=>{
-const response = Delete(userId)
-console.log("delete response--",response);
-return response
-})
-
+export const deleteUser = createAsyncThunk(
+  "/deleteUser",
+  async (userId, thunkAPI) => {
+    console.log("thunkAPI", thunkAPI);
+    const response = Delete(userId);
+    return response;
+  }
+);
 
 //Initial State
 const initialState = {
-  users: [],  
+  users: [],
   loading: false,
   error: null,
 };
@@ -52,6 +54,7 @@ export const usersSlice = createSlice({
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
       state.loading = false;
+      state.users  = state.users.push(action.payload)
     });
     builder.addCase(createUser.rejected, (state) => {
       state.error("error");
@@ -61,13 +64,27 @@ export const usersSlice = createSlice({
     builder.addCase(getUsers.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getUsers.fulfilled, (state, action) => {  
+    builder.addCase(getUsers.fulfilled, (state, action) => {
       state.loading = false;
       state.users = action.payload;
     });
     builder.addCase(getUsers.rejected, (state) => {
       state.error = "error";
     });
+
+    //Delete User
+    builder.addCase(deleteUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(deleteUser.fulfilled, (state, action) => {
+      state.loading = false;
+      const { id } = action.payload;
+      state.users = state.users.filter((user) => user.id !== id);
+    });
+    builder.addCase(deleteUser.rejected, (state) => {
+      state.error = "error";
+    });
+    //Update User
   },
 });
 

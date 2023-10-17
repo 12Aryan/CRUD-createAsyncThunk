@@ -7,11 +7,9 @@ const Navbar = () => {
   const dispatch = useDispatch()
   let count = useSelector(getUserList)
   const location = useLocation();
-  console.log("-->>", location.pathname.split("/"));
   const pathData = location.pathname.split("/");
   const currentPath = `/${pathData[1]}`;
-  console.log("log", count.users.length);
-  useEffect(()=>{dispatch(getUsers())},[])
+  // useEffect(()=>{dispatch(getUsers())},[])
 
   const totalPostCount =   count.users.length
   return (

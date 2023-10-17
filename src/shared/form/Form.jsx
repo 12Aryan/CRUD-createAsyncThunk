@@ -20,13 +20,12 @@ const Form = () => {
       [e.target.name]: e.target.value,
     }));
     const isValid = Object.values(userData).every((value) => value !== "" );
-    console.log("isvalide", isValid);
     setIsFormValid(isValid);
 
   };
   const submitUserData = async(e) => {
     e.preventDefault();
-     await dispatch(createUser(userData));
+    dispatch(createUser(userData));
     setUserData({
       name: "",
       email: "",

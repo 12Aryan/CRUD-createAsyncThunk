@@ -12,31 +12,35 @@ const Users = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
-const handleUserDelete=(userId)=>{
-  dispatch(deleteUser(userId))
-}
+  const handleUserDelete = (userId) => {
+    dispatch(deleteUser(userId));
+  };
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center gap-5">
-      
-       {users.length===0? (<h6>No data found</h6>): loading ? (
-          <div className="d-flex justify-content-center align-items-center custom-90vh">
+      <div className="">
+        {users.length === 0 ? (
+          <h6>No data found</h6>
+        ) : loading ? (
+          <div
+            className=" d-flex justify-content-center align-items-center custom-90vh"
+            style={{ color: "rgb(194, 193, 193)" }}
+          >
             <h1>Loading....</h1>
           </div>
         ) : error != null ? (
           <h1>{"error"}</h1>
         ) : (
-          <div className="card-wrapper">
+          <div className="row px-4 py-5">
             {users &&
               users?.length > 0 &&
               users?.map((user, index) => {
                 return (
                   <div
                     key={index}
-                    className="card  bg-dark m-5"
-                    style={{ width: "18rem" }}
+                    className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0"
+                    // style={{ width: "18rem" }}
                   >
-                    <div className="card-body">
+                    <div className="card-body bg-dark  m-2">
                       <h6 className="card-title">{user.name}</h6>
                       <h6 className="card-title">{user.email}</h6>
                       <h6 className="card-title">{user.gender}</h6>
@@ -45,7 +49,10 @@ const handleUserDelete=(userId)=>{
                         <button className="btn btn-outline-primary">
                           Edit
                         </button>
-                        <button className="btn btn-outline-danger" onClick={()=>handleUserDelete(user.id)}>
+                        <button
+                          className="btn btn-outline-danger"
+                          onClick={() => handleUserDelete(user.id)}
+                        >
                           Delete
                         </button>
                       </div>
