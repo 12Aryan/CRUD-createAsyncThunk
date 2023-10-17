@@ -1,4 +1,5 @@
-const url = "https://65290c3955b137ddc83e1b81.mockapi.io/api/v1/crud";
+const url = import.meta.env.VITE_BASE_API_URL
+console.log("url", url);
 
 export const get = async () => {
   const result = await fetch(url);

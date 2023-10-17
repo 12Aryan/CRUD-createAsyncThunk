@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { getUserList, getUsers } from "../../features/users/redux/usersSlice";
 import { useEffect } from "react";
 
+
 const Navbar = () => {
   const dispatch = useDispatch()
   let count = useSelector(getUserList)
@@ -10,7 +11,6 @@ const Navbar = () => {
   const pathData = location.pathname.split("/");
   const currentPath = `/${pathData[1]}`;
   // useEffect(()=>{dispatch(getUsers())},[])
-
   const totalPostCount =   count.users.length
   return (
     <>
@@ -62,7 +62,9 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
+      <div className="div">
       <Outlet/>
+      </div>
     </>
   );
 };

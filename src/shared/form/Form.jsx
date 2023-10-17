@@ -33,7 +33,7 @@ const Form = () => {
       gender: "",
     });
     await dispatch(getUsers());
-    navigate("/users");
+    // navigate("/users");
   };
 
   return (
@@ -42,7 +42,7 @@ const Form = () => {
         <div className="mb-3">
           <label className="form-label">Name</label>
           <InputComponent
-            typeProp="text"
+            typeProp={"text"}
             nameProp="name"
             classNameProp="form-control"
             valueProp={userData.name}

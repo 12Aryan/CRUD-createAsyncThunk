@@ -6,15 +6,17 @@ import Read from "./features/users/components/Read/Read";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<ErrorPage />} />
-        <Route element={<Navbar />}>
-          <Route path="/" element={<Create />} />
-          <Route path="/users" element={<Read />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="wrapper">
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<ErrorPage />} />
+          <Route element={<Navbar />}>
+            <Route path="/" element={<Create />} />
+            <Route path="/users" element={<Read />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 

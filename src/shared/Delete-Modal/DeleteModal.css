@@ -1,0 +1,78 @@
+.modal-parent-container {
+  display: flex;
+  justify-content: center;
+  top: 0;
+  position: absolute;
+  /* border: 1px solid red; */
+  align-items: center;
+  width: 100%;
+  z-index: 999;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.95);
+  height: 116vh;
+}
+.modal-child-container {
+  padding: 1rem;
+  width: 30%;
+  height: 30%;
+  color: white;
+  border-radius: 12px;
+}
+.child-modal-body {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+.btn-wrapper-div {
+}
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #dc3545;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .modal-child-container {
+    width: 75%;
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+  .modal-child-container {
+    width: 55%;
+  }
+}
+
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+  .modal-child-container {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
+  .modal-child-container {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-device-width: 1201px) and (max-device-width: 1500px) {
+  .modal-child-container {
+    width: 35%;
+  }
+}

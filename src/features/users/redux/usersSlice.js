@@ -27,8 +27,8 @@ export const getUsers = createAsyncThunk("/getUsers", async () => {
 //Delete users in DB
 export const deleteUser = createAsyncThunk(
   "/deleteUser",
-  async (userId, thunkAPI) => {
-    console.log("thunkAPI", thunkAPI);
+  async (userId) => {
+    // console.log("thunkAPI", thunkAPI);
     const response = Delete(userId);
     return response;
   }
