@@ -17,7 +17,7 @@ const Users = () => {
   };
   return (
     <>
-      <div className="">
+      <>
         {users.length === 0 ? (
           <h6>No data found</h6>
         ) : loading ? (
@@ -44,7 +44,6 @@ const Users = () => {
                       <h6 className="card-title">{user.name}</h6>
                       <h6 className="card-title">{user.email}</h6>
                       <h6 className="card-title">{user.gender}</h6>
-                      <input type="text" placeholder="Edit you name" />
                       <div className="d-flex my-3 gap-2">
                         <button className="btn btn-outline-primary">
                           Edit
@@ -62,7 +61,7 @@ const Users = () => {
               })}
           </div>
         )}
-      </div>
+      </>
     </>
   );
 };

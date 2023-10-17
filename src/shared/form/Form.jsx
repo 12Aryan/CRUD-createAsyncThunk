@@ -1,7 +1,8 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser, getUsers } from "../../features/users/redux/usersSlice";
 import { useNavigate } from "react-router-dom";
+import InputComponent from "../Input/InputComponent";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -19,11 +20,10 @@ const Form = () => {
       ...prevstate,
       [e.target.name]: e.target.value,
     }));
-    const isValid = Object.values(userData).every((value) => value !== "" );
+    const isValid = Object.values(userData).every((value) => value !== "");
     setIsFormValid(isValid);
-
   };
-  const submitUserData = async(e) => {
+  const submitUserData = async (e) => {
     e.preventDefault();
     dispatch(createUser(userData));
     setUserData({
@@ -32,7 +32,7 @@ const Form = () => {
       age: "",
       gender: "",
     });
-   await dispatch(getUsers())
+    await dispatch(getUsers());
     navigate("/users");
   };
 
@@ -41,58 +41,62 @@ const Form = () => {
       <form className="w-25 mx-auto" onSubmit={submitUserData}>
         <div className="mb-3">
           <label className="form-label">Name</label>
-          <input
-            type="text"
-            name="name"
-            className="form-control"
-            value={userData.name}
-            onChange={getUserData}
+          <InputComponent
+            typeProp="text"
+            nameProp="name"
+            classNameProp="form-control"
+            valueProp={userData.name}
+            onChangeHandler={getUserData}
           />
         </div>
         <div className="mb-3">
           <label className="form-label">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            value={userData.email}
-            onChange={getUserData}
+          <InputComponent
+            typeProp="email"
+            nameProp="email"
+            classNameProp="form-control"
+            valueProp={userData.email}
+            onChangeHandler={getUserData}
           />
         </div>
         <div className="mb-3">
           <label className="form-label">Age</label>
-          <input
-            type="number"
-            name="age"
-            className="form-control"
-            value={userData.age}
-            onChange={getUserData}
+          <InputComponent
+            typeProp="number"
+            nameProp="age"
+            classNameProp="form-control"
+            valueProp={userData.age}
+            onChangeHandler={getUserData}
           />
         </div>
         <div className="d-flex flex-wrap gap-4">
           <div className="form-check">
-            <input
-              className="form-check-input bg-gray"
-              type="radio"
-              name="gender"
-              value={"male"}
-              onChange={getUserData}
+            <InputComponent
+              classNameProp="form-check-input bg-gray"
+              typeProp="radio"
+              nameProp="gender"
+              valueProp={"male"}
+              onChangeHandler={getUserData}
             />
             <label className="form-check-label ">Male</label>
           </div>
           <div className="form-check">
-            <input
-              className="form-check-input bg-gray"
-              type="radio"
-              name="gender"
-              value="female"
-              onChange={getUserData}
+            <InputComponent
+              classNameProp="form-check-input bg-gray"
+              typeProp="radio"
+              nameProp="gender"
+              valueProp="female"
+              onChangeHandler={getUserData}
             />
             <label className="form-check-label ">Female</label>
           </div>
         </div>
 
-        <button type="submit" className="btn btn-outline-primary mt-2" disabled={!isFormValid}>
+        <button
+          type="submit"
+          className="btn btn-outline-primary mt-2"
+          disabled={!isFormValid}
+        >
           Submit
         </button>
       </form>
