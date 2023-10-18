@@ -1,10 +1,29 @@
+import { useState } from "react";
 import InputComponent from "../Input/InputComponent";
 import "./Modal.css";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../features/users/redux/usersSlice";
 const Modal = ({ setIsOpenProp, userDetailProp }) => {
-  console.log("userDetail--", userDetailProp);
+  // console.log("userDetail--", userDetailProp);
+  const dispatch = useDispatch();
+  const [editUserDetail, setEditUserDetail] = useState({
+    name: userDetailProp.name,
+    email: userDetailProp.email,
+    age: userDetailProp.age,
+    gender: userDetailProp.gender,
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateUser(editUserDetail));
   };
+  const editUserData = (e) => {
+    // console.log(e.target.value);
+    setEditUserDetail((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  // console.log(editUserDetail);
   return (
     <div className="modal-parent-container">
       <div className="modal-child-container bg-dark">
@@ -24,6 +43,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                   nameProp="name"
                   classNameProp="form-control"
                   defaultValueProp={userDetailProp.name}
+                  onChangeHandler={editUserData}
                 />
               </div>
               <div className="mb-3">
@@ -33,6 +53,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                   nameProp="email"
                   classNameProp="form-control"
                   defaultValueProp={userDetailProp.email}
+                  onChangeHandler={editUserData}
                 />
               </div>
               <div className="mb-3">
@@ -42,6 +63,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                   nameProp="age"
                   classNameProp="form-control"
                   defaultValueProp={userDetailProp.age}
+                  onChangeHandler={editUserData}
                 />
               </div>
               <div className="d-flex flex-wrap gap-2">
@@ -54,6 +76,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                     defaultCheckedProp={
                       userDetailProp.gender === "male" ? true : false
                     }
+                    onChangeHandler={editUserData}
                   />
                   <label className="form-check-label ">Male</label>
                 </div>
@@ -66,6 +89,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                     defaultCheckedProp={
                       userDetailProp.gender === "female" ? true : false
                     }
+                    onChangeHandler={editUserData}
                   />
                   <label className="form-check-label ">Female</label>
                 </div>

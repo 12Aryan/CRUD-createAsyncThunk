@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Delete, Post, get } from "../../../apiService/apiService";
+import { Delete, Post, Put, get } from "../../../apiService/apiService";
 
 //create async actions
 
@@ -23,6 +23,11 @@ export const getUsers = createAsyncThunk("/getUsers", async () => {
   }
 });
 //Update users in DB
+export const updateUser= createAsyncThunk("/createUser", async(data)=>{
+  console.log("user--", data);
+  const response = Put(data)
+  return response
+})
 
 //Delete users in DB
 export const deleteUser = createAsyncThunk(
