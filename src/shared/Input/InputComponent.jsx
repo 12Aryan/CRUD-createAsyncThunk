@@ -5,7 +5,10 @@ const InputComponent = ({
   nameProp,
   classNameProp,
   valueProp,
+  defaultValueProp,
   onChangeHandler,
+  checkedProp,
+  defaultCheckedProp,
 }) => {
   return (
     <input
@@ -13,7 +16,11 @@ const InputComponent = ({
       type={typeProp}
       name={nameProp}
       value={valueProp}
+      defaultValue={defaultValueProp}
       onChange={onChangeHandler}
+      checked= {checkedProp}
+      defaultChecked={defaultCheckedProp}
+      
     />
   );
 };

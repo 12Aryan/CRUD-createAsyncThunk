@@ -8,7 +8,12 @@ const Users = () => {
   const { users, loading, error } = useSelector(getUserList);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [userDetail, setUserDetail] = useState({
+    name: "",
+    email: "",
+    age: "",
+    gender: "",
+  });
 
   const [deleteUserData, setDeleteUserData] = useState({
     userId: null,
@@ -22,7 +27,7 @@ const Users = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
-  const openDeleteModal = (userName, userId) => {
+  const handleDeleteClick = (userName, userId) => {
     setIsDeleteModalOpen(true);
     setDeleteUserData({ userName, userId });
   };
@@ -30,9 +35,29 @@ const Users = () => {
     dispatch(deleteUser(deleteUserData.userId));
     setIsDeleteModalOpen(false);
   };
+
+  const handleEditClick = (
+    userId,
+    userName,
+    userEmail,
+    userGender,
+    userAge
+  ) => {
+    setIsOpen(true),
+      setUserDetail((prevState) => ({
+        ...prevState,
+        id: userId,
+        name: userName,
+        email: userEmail,
+        gender: userGender,
+        age: userAge,
+      }));
+  };
   return (
     <>
-      {isOpen && <Modal setIsOpenProp={setIsOpen} />}
+      {isOpen && (
+        <Modal setIsOpenProp={setIsOpen} userDetailProp={userDetail} />
+      )}
       {isDeleteModalOpen && (
         <DeleteModal
           setIsDeleteModalOpenProp={setIsDeleteModalOpen}
@@ -61,17 +86,27 @@ const Users = () => {
                   <div className="card-body bg-dark  m-2">
                     <h6 className="card-title">{user.name}</h6>
                     <h6 className="card-title">{user.email}</h6>
+                    <h6 className="card-title">Age: {user.age}</h6>
                     <h6 className="card-title">{user.gender}</h6>
+
                     <div className="d-flex my-3 gap-2">
                       <button
                         className="btn btn-outline-primary"
-                        onClick={() => setIsOpen(true)}
+                        onClick={() =>
+                          handleEditClick(
+                            user.id,
+                            user.name,
+                            user.email,
+                            user.gender,
+                            user.age
+                          )
+                        }
                       >
                         Edit
                       </button>
                       <button
                         className="btn btn-outline-danger"
-                        onClick={() => openDeleteModal(user.name, user.id)}
+                        onClick={() => handleDeleteClick(user.name, user.id)}
                       >
                         Delete
                       </button>

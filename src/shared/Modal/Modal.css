@@ -8,12 +8,12 @@
     z-index: 999;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.95);
-    height: 100%;
+    height: -webkit-fill-available;
 }
 .modal-child-container{
     padding: 1rem;
     width: 30%;
-    height: 50%;
+    height: max-content;
     color: white;
     border-radius: 12px;
 }
@@ -29,4 +29,44 @@
     color: #dc3545;
     text-decoration: none;
     cursor: pointer;
+  }
+  .custom-width{
+    width: 75%;
+  }
+
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .modal-child-container {
+      width: 75%;
+    }
+    .custom-width{
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    .modal-child-container {
+      width: 55%;
+    }
+    .custom-width{
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .modal-child-container {
+      width: 50%;
+    }
+  }
+  
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1200px) {
+    .modal-child-container {
+      width: 40%;
+    }
+  }
+  
+  @media only screen and (min-device-width: 1201px) and (max-device-width: 1500px) {
+    .modal-child-container {
+      width: 35%;
+    }
   }

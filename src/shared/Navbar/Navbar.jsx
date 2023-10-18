@@ -10,14 +10,15 @@ const Navbar = () => {
   const location = useLocation();
   const pathData = location.pathname.split("/");
   const currentPath = `/${pathData[1]}`;
-  // useEffect(()=>{dispatch(getUsers())},[])
+
   const totalPostCount =   count.users.length
+  useEffect(()=>{dispatch(getUsers())},[totalPostCount])
   return (
     <>
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-navbar">
           <div className="container-fluid">
-            <div className="navbar-brand" href="#">
+            <div className="navbar-brand" >
               CRUD - AsyncThunk
             </div>
             <button

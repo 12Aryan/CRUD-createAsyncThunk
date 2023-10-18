@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { createUser, getUsers } from "../../features/users/redux/usersSlice";
 import { useNavigate } from "react-router-dom";
 import InputComponent from "../Input/InputComponent";
+import './Form.css'
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -33,12 +34,12 @@ const Form = () => {
       gender: "",
     });
     await dispatch(getUsers());
-    // navigate("/users");
+    navigate("/users");
   };
 
   return (
-    <div className="custom-90vh d-flex justify-content-center align-items-center">
-      <form className="w-25 mx-auto" onSubmit={submitUserData}>
+    <div className="custom-90vh d-flex justify-content-center align-items-center p-5">
+      <form className="form-custom-width mx-auto" onSubmit={submitUserData}>
         <div className="mb-3">
           <label className="form-label">Name</label>
           <InputComponent

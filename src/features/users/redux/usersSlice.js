@@ -60,7 +60,7 @@ export const usersSlice = createSlice({
       state.error("error");
     });
 
-    //GET users case
+    //GET User case
     builder.addCase(getUsers.pending, (state) => {
       state.loading = true;
     });
@@ -72,7 +72,7 @@ export const usersSlice = createSlice({
       state.error = "error";
     });
 
-    //Delete User
+    //Delete User case
     builder.addCase(deleteUser.pending, (state) => {
       state.loading = true;
     });
@@ -85,6 +85,11 @@ export const usersSlice = createSlice({
       state.error = "error";
     });
     //Update User
+
+
+
+
+    
   },
 });
 
