@@ -6,6 +6,11 @@
 :root{
   --primary-color: #0d6efd
 }
+.wrapper{
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
 .color {
   /* --white: #ffffff; */
   color: white;

@@ -63,9 +63,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-      <div className="div">
       <Outlet/>
-      </div>
     </>
   );
 };
