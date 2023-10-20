@@ -7,6 +7,7 @@ import { Delete, Post, Put, Get } from "../../../apiService/apiService";
 export const createUser = createAsyncThunk("/createUser", async (userData) => {
   try {
     const response = Post(userData);
+
     return response;
   } catch (error) {
     console.error(error);
@@ -23,21 +24,18 @@ export const getUsers = createAsyncThunk("/getUsers", async () => {
   }
 });
 //Update users in DB
-export const updateUser= createAsyncThunk("/createUser", async(data)=>{
-  console.log("user--", data);
-  const response = Put(data)
-  return response
-})
+export const updateUser = createAsyncThunk("/updateUser", async (data) => {
+  console.log("data--", data);
+  const response = Put(data);
+  console.log("res--", await response);
+  return response;
+});
 
 //Delete users in DB
-export const deleteUser = createAsyncThunk(
-  "/deleteUser",
-  async (userId) => {
-    // console.log("thunkAPI", thunkAPI);
-    const response = Delete(userId);
-    return response;
-  }
-);
+export const deleteUser = createAsyncThunk("/deleteUser", async (userId) => {
+  const response = Delete(userId);
+  return response;
+});
 
 //Initial State
 const initialState = {
@@ -59,7 +57,7 @@ export const usersSlice = createSlice({
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.users  = state.users.push(action.payload)
+      state.users = state.users.push(action.payload);
     });
     builder.addCase(createUser.rejected, (state) => {
       state.error("error");
@@ -90,11 +88,17 @@ export const usersSlice = createSlice({
       state.error = "error";
     });
     //Update User
-
-
-
-
-    
+    builder.addCase(updateUser.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.users = state.users.map((e, i)=>(e.id === action.payload.id ? action.payload : e))
+      console.log(action.payload);
+    });
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.error("error");
+    });
   },
 });
 

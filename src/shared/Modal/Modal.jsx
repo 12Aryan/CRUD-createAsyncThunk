@@ -4,27 +4,25 @@ import "./Modal.css";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/users/redux/usersSlice";
 const Modal = ({ setIsOpenProp, userDetailProp }) => {
-  // console.log("userDetail--", userDetailProp);
   const dispatch = useDispatch();
   const [editUserDetail, setEditUserDetail] = useState({
+    id: userDetailProp.id,
     name: userDetailProp.name,
     email: userDetailProp.email,
     age: userDetailProp.age,
     gender: userDetailProp.gender,
   });
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { 
     e.preventDefault();
+    setIsOpenProp(false)
     dispatch(updateUser(editUserDetail));
   };
   const editUserData = (e) => {
-    console.log("namme--", e.target.name);
-    // console.log(e.target.value);
     setEditUserDetail((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
-  // console.log(editUserDetail);
   return (
     <div className="modal-parent-container">
       <div className="modal-child-container bg-dark">
@@ -100,7 +98,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                 type="submit"
                 className="btn btn-outline-primary mt-2"
                 // disabled={!isFormValid}
-                onClick={()=>setIsOpenProp(false)}
+                // onClick={()=>setIsOpenProp(false)}
               >
                 Submit
               </button>

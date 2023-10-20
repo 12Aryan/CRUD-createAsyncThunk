@@ -1,5 +1,4 @@
 const url = import.meta.env.VITE_BASE_API_URL;
-console.log("url", url);
 
 export const Get = async () => {
   const result = await fetch(url);
@@ -16,18 +15,17 @@ export const Post = async (data) => {
   return response;
 };
 export const Put = async (data) => {
-  const result = await fetch(url, {
+  const result = await fetch(`${url}/${data.id}`, {
     method: "PUT",
-    headers: {},
+    headers: {"Content-Type": "application/json"  },
     body: JSON.stringify(data),
   });
   const response = await result.json();
   return response;
-  // console.log("data--", data);
 };
 export const Delete = async (userId) => {
   const result = await fetch(
-    `https://65290c3955b137ddc83e1b81.mockapi.io/api/v1/crud/${userId}`,
+    `${url}/${userId}`,
     {
       method: "DELETE",
       headers: {

@@ -20,7 +20,6 @@ const Users = () => {
     userName: null,
   });
 
-  //   console.log("loading--", loading);
 
   const dispatch = useDispatch();
 
