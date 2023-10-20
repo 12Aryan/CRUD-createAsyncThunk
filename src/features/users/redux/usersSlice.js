@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Delete, Post, Put, get } from "../../../apiService/apiService";
+import { Delete, Post, Put, Get } from "../../../apiService/apiService";
 
 //create async actions
 
@@ -16,7 +16,7 @@ export const createUser = createAsyncThunk("/createUser", async (userData) => {
 //Get users from DB
 export const getUsers = createAsyncThunk("/getUsers", async () => {
   try {
-    const response = get();
+    const response = Get();
     return response;
   } catch (err) {
     console.error(err);

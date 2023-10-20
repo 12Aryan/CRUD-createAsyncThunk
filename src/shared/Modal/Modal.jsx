@@ -17,6 +17,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
     dispatch(updateUser(editUserDetail));
   };
   const editUserData = (e) => {
+    console.log("namme--", e.target.name);
     // console.log(e.target.value);
     setEditUserDetail((prevState) => ({
       ...prevState,
@@ -99,6 +100,7 @@ const Modal = ({ setIsOpenProp, userDetailProp }) => {
                 type="submit"
                 className="btn btn-outline-primary mt-2"
                 // disabled={!isFormValid}
+                onClick={()=>setIsOpenProp(false)}
               >
                 Submit
               </button>

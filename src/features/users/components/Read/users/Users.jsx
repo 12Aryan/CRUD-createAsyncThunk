@@ -11,7 +11,7 @@ const Users = () => {
   const [userDetail, setUserDetail] = useState({
     name: "",
     email: "",
-    age: "",
+    age: "", 
     gender: "",
   });
 
@@ -81,9 +81,9 @@ const Users = () => {
               users.map((user, index) => (
                 <div
                   key={index}
-                  className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0"
+                  className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0 "
                 >
-                  <div className="card-body bg-dark  m-2">
+                  <div className="card-body bg-dark  m-2 rounded">
                     <h6 className="card-title">{user.name}</h6>
                     <h6 className="card-title">{user.email}</h6>
                     <h6 className="card-title">Age: {user.age}</h6>

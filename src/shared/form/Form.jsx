@@ -34,7 +34,10 @@ const Form = () => {
       gender: "",
     });
     await dispatch(getUsers());
-    navigate("/users");
+    setTimeout(()=>{
+      navigate("/users");
+    }, 500)
+    
   };
 
   return (

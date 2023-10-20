@@ -1,7 +1,7 @@
 const url = import.meta.env.VITE_BASE_API_URL;
 console.log("url", url);
 
-export const get = async () => {
+export const Get = async () => {
   const result = await fetch(url);
   const response = await result.json();
   return response;
@@ -16,14 +16,14 @@ export const Post = async (data) => {
   return response;
 };
 export const Put = async (data) => {
-  // const result = await fetch(url, {
-  //   method: "PUT",
-  //   headers: {},
-  //   body: JSON.stringify(data),
-  // });
-  // const response = await result.json();
-  // return response;
-  console.log("data--", data);
+  const result = await fetch(url, {
+    method: "PUT",
+    headers: {},
+    body: JSON.stringify(data),
+  });
+  const response = await result.json();
+  return response;
+  // console.log("data--", data);
 };
 export const Delete = async (userId) => {
   const result = await fetch(
