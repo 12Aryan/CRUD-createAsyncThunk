@@ -37,6 +37,8 @@ const Form = () => {
     setTimeout(()=>{
       navigate("/users");
     }, 500)
+    console.log(isFormValid)
+    console.log(userData);
     
   };
 

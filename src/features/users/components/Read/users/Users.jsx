@@ -24,6 +24,7 @@ const Users = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.scrollTo(0,document.body.scrollHeight);
     dispatch(getUsers());
   }, []);
   const handleDeleteClick = (userName, userId) => {
