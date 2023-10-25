@@ -36,10 +36,7 @@ const Form = () => {
     await dispatch(getUsers());
     setTimeout(()=>{
       navigate("/users");
-    }, 500)
-    console.log(isFormValid)
-    console.log(userData);
-    
+    }, 500)    
   };
 
   return (

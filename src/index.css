@@ -1,17 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Roboto:ital,wght@0,300;1,100&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  /* font-family: 'Roboto', sans-serif; */
 }
-:root{
-  --primary-color: #0d6efd
+:root {
+  --primary-color: #0d6efd;
 }
-.wrapper{
+.wrapper {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-    /* font-family: 'Roboto', sans-serif; */
+  font-family: "Roboto", sans-serif;
 }
 .color {
   /* --white: #ffffff; */
@@ -30,17 +33,16 @@ body {
   overflow-y: scroll;
 }
 
-
 .custom-90vh {
   height: 90vh !important;
 }
 .card-title {
   color: white !important;
 }
-.bg-black{
+.bg-black {
   background-color: black !important;
 }
-.hide-scroll{
+.hide-scroll {
   overflow-x: hidden;
 }
 

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { getUserList, getUsers } from "../../features/users/redux/usersSlice";
-import { useEffect } from "react";
+import { getUserList, getUsers, searchUser } from "../../features/users/redux/usersSlice";
+import { useEffect, useState } from "react";
 
 
 const Navbar = () => {
@@ -10,6 +10,14 @@ const Navbar = () => {
   const location = useLocation();
   const pathData = location.pathname.split("/");
   const currentPath = `/${pathData[1]}`;
+  const [searchQuery, setSearchQuery] = useState(null)
+
+  const getSearchValue= (e)=>{
+    const event = e.target.value
+    // setSearchQuery(event.trim())
+   dispatch(searchUser(event)) 
+  }
+  // console.log('searchQuery', searchQuery)
 
   const totalPostCount =   count.users.length
   useEffect(()=>{dispatch(getUsers())},[totalPostCount])
@@ -55,10 +63,8 @@ const Navbar = () => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={getSearchValue}
               />
-              <button className="btn  btn-outline-primary" type="submit">
-                Search
-              </button>
             </div>
           </div>
         </nav>

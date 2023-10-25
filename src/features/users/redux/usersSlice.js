@@ -25,9 +25,7 @@ export const getUsers = createAsyncThunk("/getUsers", async () => {
 });
 //Update users in DB
 export const updateUser = createAsyncThunk("/updateUser", async (data) => {
-  console.log("data--", data);
   const response = Put(data);
-  console.log("res--", await response);
   return response;
 });
 
@@ -42,6 +40,7 @@ const initialState = {
   users: [],
   loading: false,
   error: null,
+  searchData: "",
 };
 
 //Create SLice
@@ -49,7 +48,12 @@ const initialState = {
 export const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    searchUser: (state, action)=>{
+      state.searchData = action.payload
+     
+    }
+  },
   extraReducers: (builder) => {
     //CREATE users case
     builder.addCase(createUser.pending, (state) => {
@@ -94,7 +98,6 @@ export const usersSlice = createSlice({
     builder.addCase(updateUser.fulfilled, (state, action) => {
       state.loading = false;
       state.users = state.users.map((e, i)=>(e.id === action.payload.id ? action.payload : e))
-      console.log(action.payload);
     });
     builder.addCase(updateUser.rejected, (state, action) => {
       state.error("error");
@@ -106,6 +109,7 @@ export const usersSlice = createSlice({
 export const getUserList = (state) => state.user;
 
 //Reducer actions export
+export const {searchUser} = usersSlice.actions
 
 // Root reducer export
 export default usersSlice.reducer;

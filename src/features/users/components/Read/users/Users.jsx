@@ -5,7 +5,7 @@ import Modal from "../../../../../shared/Modal/Modal";
 import DeleteModal from "../../../../../shared/Delete-Modal/DeleteModal";
 
 const Users = () => {
-  const { users, loading, error } = useSelector(getUserList);
+  const { users, loading, error, searchData } = useSelector(getUserList);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [userDetail, setUserDetail] = useState({
@@ -19,6 +19,7 @@ const Users = () => {
     userId: null,
     userName: null,
   });
+  // console.log("--",searchData);
 
 
   const dispatch = useDispatch();
@@ -78,7 +79,14 @@ const Users = () => {
         ) : (
           <div className="row px-4 py-5 content-wrapper">
             {users && users.length > 0 ? (
-              users.map((user, index) => (
+              users.filter((element)=>{ 
+                if(searchData.length===0){
+                  return element
+                }
+                else{ 
+                  return element.name.toLowerCase().includes(searchData.toLowerCase())
+                }
+              }).map((user, index) => (
                 <div
                   key={index}
                   className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0 "
