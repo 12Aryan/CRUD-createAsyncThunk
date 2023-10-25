@@ -11,7 +11,7 @@ const Users = () => {
   const [userDetail, setUserDetail] = useState({
     name: "",
     email: "",
-    age: "", 
+    age: "",
     gender: "",
   });
 
@@ -21,11 +21,10 @@ const Users = () => {
   });
   // console.log("--",searchData);
 
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    window.scrollTo(0,document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);
     dispatch(getUsers());
   }, []);
   const handleDeleteClick = (userName, userId) => {
@@ -79,49 +78,63 @@ const Users = () => {
         ) : (
           <div className="row px-4 py-5 content-wrapper">
             {users && users.length > 0 ? (
-              users.filter((element)=>{ 
-                if(searchData.length===0){
-                  return element
-                }
-                else{ 
-                  return element.name.toLowerCase().includes(searchData.toLowerCase())
-                }
-              }).map((user, index) => (
-                <div
-                  key={index}
-                  className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0 "
-                >
-                  <div className="card-body bg-dark  m-2 rounded">
-                    <h6 className="card-title">{user.name}</h6>
-                    <h6 className="card-title">{user.email}</h6>
-                    <h6 className="card-title">Age: {user.age}</h6>
-                    <h6 className="card-title">{user.gender}</h6>
+              users
+                .filter((element) => {
+                  if (searchData.length === 0) {
+                    return element;
+                  } else {
+                    return (
+                      element.name
+                        .toLowerCase()
+                        .includes(searchData.toLowerCase()) ||
+                      element.age
+                        .toLowerCase()
+                        .includes(searchData.toLowerCase()) ||
+                      element.gender
+                        .toLowerCase()
+                        .includes(searchData.toLowerCase()) ||
+                      element.email
+                        .toLowerCase()
+                        .includes(searchData.toLowerCase())
+                    );
+                  }
+                })
+                .map((user, index) => (
+                  <div
+                    key={index}
+                    className="card bg-black col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 px-0 "
+                  >
+                    <div className="card-body bg-dark  m-2 rounded">
+                      <h6 className="card-title">{user.name}</h6>
+                      <h6 className="card-title">{user.email}</h6>
+                      <h6 className="card-title">Age: {user.age}</h6>
+                      <h6 className="card-title">{user.gender}</h6>
 
-                    <div className="d-flex my-3 gap-2">
-                      <button
-                        className="btn btn-outline-primary"
-                        onClick={() =>
-                          handleEditClick(
-                            user.id,
-                            user.name,
-                            user.email,
-                            user.gender,
-                            user.age
-                          )
-                        }
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-outline-danger"
-                        onClick={() => handleDeleteClick(user.name, user.id)}
-                      >
-                        Delete
-                      </button>
+                      <div className="d-flex my-3 gap-2">
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={() =>
+                            handleEditClick(
+                              user.id,
+                              user.name,
+                              user.email,
+                              user.gender,
+                              user.age
+                            )
+                          }
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-outline-danger"
+                          onClick={() => handleDeleteClick(user.name, user.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                ))
             ) : (
               <div className="d-flex justify-content-center ">
                 <h1>No data found</h1>
