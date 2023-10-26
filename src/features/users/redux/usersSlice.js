@@ -106,9 +106,7 @@ export const usersSlice = createSlice({
 });
 
 //selectors
-export const getUserList = (state) => {
-  console.log(state);
-  return state.user};
+export const getUserList = (state) => state.user;
 
 //Reducer actions export
 export const {searchUser} = usersSlice.actions

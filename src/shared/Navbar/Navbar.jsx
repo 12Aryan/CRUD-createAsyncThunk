@@ -1,34 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { getUserList, searchUser } from "../../features/users/redux/usersSlice";
-
+import {
+  getUserList,
+  getUsers,
+  searchUser,
+} from "../../features/users/redux/usersSlice";
+import { useEffect } from "react";
 
 const Navbar = () => {
-  const dispatch = useDispatch()
-  let count = useSelector(getUserList)
+  const dispatch = useDispatch();
+  let count = useSelector(getUserList);
   const location = useLocation();
   const pathData = location.pathname.split("/");
   const currentPath = `/${pathData[1]}`;
   // const [searchQuery, setSearchQuery] = useState(null)
 
-  const getSearchValue= (e)=>{
-    const event = e.target.value
-    // setSearchQuery(event.trim())
-   dispatch(searchUser(event)) 
-  }
-  // console.log('searchQuery', searchQuery)
-console.log(count);
-  const totalPostCount = count.users.length
-  console.log(totalPostCount);
-  // useEffect(()=>{dispatch(getUsers())},[totalPostCount])
+  const getSearchValue = (e) => {
+    const event = e.target.value;
+    dispatch(searchUser(event.trim()));
+  };
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+  const totalPostCount = count.users.length;
+  console.log("totalPostCount", totalPostCount);
+
   return (
     <>
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-navbar">
           <div className="container-fluid">
-            <div className="navbar-brand" >
-              CRUD - AsyncThunk
-            </div>
+            <div className="navbar-brand">CRUD - AsyncThunk</div>
             <button
               className="navbar-toggler"
               type="button"
@@ -46,15 +48,25 @@ console.log(count);
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className={`${currentPath==="/"? 'active-route': ''} nav-link active`} to='/'>
+                  <Link
+                    className={`${
+                      currentPath === "/" ? "active-route" : ""
+                    } nav-link active`}
+                    to="/"
+                  >
                     Create Post{" "}
-                    </Link>
-                  
+                  </Link>
                 </li>
                 <li className="nav-item">
-                <Link className={`${currentPath==="/users"? 'active-route': ''} nav-link active`} to='/users'>
-                    All Posts ({totalPostCount})
-                    </Link>
+                  <Link
+                    className={`${
+                      currentPath === "/users" ? "active-route" : ""
+                    } nav-link active`}
+                    to="/users"
+                  >
+                    All Posts
+                    {count.users.length > 0 ? ` (${totalPostCount})` : <span>...</span> }
+                  </Link>
                 </li>
               </ul>
 
@@ -69,7 +81,7 @@ console.log(count);
           </div>
         </nav>
       </div>
-      <Outlet/>
+      <Outlet />
     </>
   );
 };

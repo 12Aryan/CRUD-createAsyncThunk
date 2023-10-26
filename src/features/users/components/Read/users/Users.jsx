@@ -70,7 +70,7 @@ const Users = () => {
             className="d-flex justify-content-center align-items-center custom-90vh"
             // style={{ color: "rgb(194, 193, 193)" }}
           >
-            <Loader />
+            <Loader smallLoader={'false'}/>
           </div>
         ) : error != null ? (
           <h1>{"error"}</h1>
