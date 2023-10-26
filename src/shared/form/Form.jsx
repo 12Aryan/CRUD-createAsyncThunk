@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser, getUsers } from "../../features/users/redux/usersSlice";
+import { createUser } from "../../features/users/redux/usersSlice";
 import { useNavigate } from "react-router-dom";
 import InputComponent from "../Input/InputComponent";
 import './Form.css'
