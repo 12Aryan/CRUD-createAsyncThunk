@@ -51,7 +51,7 @@ export const usersSlice = createSlice({
   reducers: {
     searchUser: (state, action)=>{
       state.searchData = action.payload
-     
+      
     }
   },
   extraReducers: (builder) => {
@@ -61,7 +61,7 @@ export const usersSlice = createSlice({
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.users = state.users.push(action.payload);
+      state.users.push(action.payload);
     });
     builder.addCase(createUser.rejected, (state) => {
       state.error("error");
@@ -92,21 +92,23 @@ export const usersSlice = createSlice({
       state.error = "error";
     });
     //Update User
-    builder.addCase(updateUser.pending, (state, action) => {
+    builder.addCase(updateUser.pending, (state, ) => {
       state.loading = true;
     });
     builder.addCase(updateUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.users = state.users.map((e, i)=>(e.id === action.payload.id ? action.payload : e))
+      state.users = state.users.map((e)=>(e.id === action.payload.id ? action.payload : e))
     });
-    builder.addCase(updateUser.rejected, (state, action) => {
+    builder.addCase(updateUser.rejected, (state, ) => {
       state.error("error");
     });
   },
 });
 
 //selectors
-export const getUserList = (state) => state.user;
+export const getUserList = (state) => {
+  console.log(state);
+  return state.user};
 
 //Reducer actions export
 export const {searchUser} = usersSlice.actions

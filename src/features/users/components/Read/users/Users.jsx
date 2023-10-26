@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, getUserList, getUsers } from "../../../redux/usersSlice";
 import Modal from "../../../../../shared/Modal/Modal";
 import DeleteModal from "../../../../../shared/Delete-Modal/DeleteModal";
+import Loader from "../../../../../shared/Loader/Loader";
 
 const Users = () => {
+  const dispatch = useDispatch();
   const { users, loading, error, searchData } = useSelector(getUserList);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -19,14 +21,11 @@ const Users = () => {
     userId: null,
     userName: null,
   });
-  // console.log("--",searchData);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
     dispatch(getUsers());
   }, []);
+
   const handleDeleteClick = (userName, userId) => {
     setIsDeleteModalOpen(true);
     setDeleteUserData({ userName, userId });
@@ -69,9 +68,9 @@ const Users = () => {
         {loading ? (
           <div
             className="d-flex justify-content-center align-items-center custom-90vh"
-            style={{ color: "rgb(194, 193, 193)" }}
+            // style={{ color: "rgb(194, 193, 193)" }}
           >
-            <h1>Loading....</h1>
+            <Loader />
           </div>
         ) : error != null ? (
           <h1>{"error"}</h1>

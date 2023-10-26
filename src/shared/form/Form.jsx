@@ -24,7 +24,7 @@ const Form = () => {
     const isValid = Object.values(userData).every((value) => value !== "");
     setIsFormValid(isValid);
   };
-  const submitUserData = async (e) => {
+  const submitUserData =  (e) => {
     e.preventDefault();
     dispatch(createUser(userData));
     setUserData({
@@ -33,7 +33,6 @@ const Form = () => {
       age: "",
       gender: "",
     });
-    await dispatch(getUsers());
     setTimeout(()=>{
       navigate("/users");
     }, 500)    

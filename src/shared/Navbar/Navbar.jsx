@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { getUserList, getUsers, searchUser } from "../../features/users/redux/usersSlice";
-import { useEffect, useState } from "react";
+import { getUserList, searchUser } from "../../features/users/redux/usersSlice";
 
 
 const Navbar = () => {
@@ -10,7 +9,7 @@ const Navbar = () => {
   const location = useLocation();
   const pathData = location.pathname.split("/");
   const currentPath = `/${pathData[1]}`;
-  const [searchQuery, setSearchQuery] = useState(null)
+  // const [searchQuery, setSearchQuery] = useState(null)
 
   const getSearchValue= (e)=>{
     const event = e.target.value
@@ -18,9 +17,10 @@ const Navbar = () => {
    dispatch(searchUser(event)) 
   }
   // console.log('searchQuery', searchQuery)
-
-  const totalPostCount =   count.users.length
-  useEffect(()=>{dispatch(getUsers())},[totalPostCount])
+console.log(count);
+  const totalPostCount = count.users.length
+  console.log(totalPostCount);
+  // useEffect(()=>{dispatch(getUsers())},[totalPostCount])
   return (
     <>
       <div>
