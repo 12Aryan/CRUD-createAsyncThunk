@@ -3,11 +3,12 @@ import Create from "./features/users/components/create/Create";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorPage from "./shared/Error/Error-page";
 import Read from "./features/users/components/Read/Read";
+import Signup from "./features/Authentication/Signup/Signup";
 
 const App = () => {
   return (
     <div className="wrapper">
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="*" element={<ErrorPage />} />
           <Route element={<Navbar />}>
@@ -15,7 +16,8 @@ const App = () => {
             <Route path="/users" element={<Read />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Signup/>
     </div>
   );
 };
