@@ -8,16 +8,17 @@ import Signup from "./features/Authentication/Signup/Signup";
 const App = () => {
   return (
     <div className="wrapper">
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/signup" element={<Signup />} />
           <Route element={<Navbar />}>
             <Route path="/" element={<Create />} />
             <Route path="/users" element={<Read />} />
           </Route>
         </Routes>
-      </BrowserRouter> */}
-      <Signup/>
+      </BrowserRouter>
+      {/* <Signup /> */}
     </div>
   );
 };

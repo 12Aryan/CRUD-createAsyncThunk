@@ -49,6 +49,7 @@ const Signup = () => {
                   name="name"
                   type="text"
                   value={values.name}
+                  placeholder="Enter Name"
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -60,6 +61,7 @@ const Signup = () => {
                 <input
                   name="email"
                   type="email"
+                  placeholder="Enter Email"
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -73,6 +75,7 @@ const Signup = () => {
                 <input
                   name="password"
                   type={`${showPass ? "text" : "password"}`}
+                  placeholder="Password"
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -80,6 +83,7 @@ const Signup = () => {
                 <i
                   className={`${showPass ? "fa fa-eye" : "fa fa-eye-slash"}`}
                   onClick={handleShowPassword}
+                  
                 ></i>
               </div>
             </div>
@@ -89,6 +93,7 @@ const Signup = () => {
                 <input
                   name="confirm_password"
                   type={`${showCnfPass ? "text" : "password"}`}
+                  placeholder="Confirm Password"
                   value={values.confirm_password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -115,7 +120,7 @@ const Signup = () => {
                 </select>
               </span>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" className="btn btn-outline-primary">Submit</button>
           </Form>
         )}
       </Formik>
