@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Signup.css";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 const initialValues = {
   name: "",
   email: "",
@@ -12,6 +12,7 @@ const initialValues = {
 const Signup = () => {
   const [showPass, setShowPass] = useState(false);
   const [showCnfPass, setCnfShowPass] = useState(false);
+  const countries = ["US", "UK", "Canada", "Australia", "India"];
   const handleSubmit = (values) => {
     console.log(values);
     // e.preventDefault();
@@ -107,9 +108,10 @@ const Signup = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                 >
-                  <option value="uk">UK</option>
-                  <option value="us">US</option>
-                  <option value="canada">Canada</option>
+                  <option value="">Select Country</option>
+                  {countries.map((e,i) => (
+                    <option key={i} value={e}>{e}</option>
+                  ))}
                 </select>
               </span>
             </div>
