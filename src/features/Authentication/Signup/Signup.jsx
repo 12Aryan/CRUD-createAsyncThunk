@@ -25,18 +25,6 @@ const Signup = () => {
   };
   return (
     <div className="signup-wrapper">
-      {/* <form action="">
-        <label htmlFor="name">Name</label> 
-        <input name="name" type="text" />
-        <label htmlFor="email">Email</label>
-        <input name="email" type="email" />
-        <label htmlFor="password">Password</label>
-        <input name="password" type="password" />
-        <label htmlFor="confirm_password">Confirm-Password</label>
-        <input name="confirm_password" type="password" />
-      
-        
-      </form> */}
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -116,11 +104,6 @@ const Signup = () => {
                 <select
                   name="country"
                   id="country"
-                  //   value={values.country}
-                  //   onChange={(e) => {
-                  //     console.log("--", JSON.stringify(e.target.value));
-                  //     setFieldValue("country", (e.target.value));
-                  //   }}
                   onBlur={handleBlur}
                   onChange={handleChange}
                 >
