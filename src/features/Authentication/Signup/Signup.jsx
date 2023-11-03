@@ -14,9 +14,7 @@ const Signup = () => {
   const [showCnfPass, setCnfShowPass] = useState(false);
   const countries = ["US", "UK", "Canada", "Australia", "India"];
   const handleSubmit = (values) => {
-    console.log(values);
     // e.preventDefault();
-    console.table(values);
   };
   const handleShowPassword = () => {
     setShowPass(!showPass);

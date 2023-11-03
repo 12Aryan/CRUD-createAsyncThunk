@@ -23,7 +23,6 @@ const Navbar = () => {
     dispatch(getUsers());
   }, []);
   const totalPostCount = count.users.length;
-  console.log("totalPostCount", totalPostCount);
 
   return (
     <>
