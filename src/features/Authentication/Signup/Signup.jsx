@@ -28,8 +28,9 @@ const Signup = () => {
     <div className="signup-wrapper">
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, {setSubmitting}) => {
           handleSubmit(values);
+          setSubmitting(false)
         }}
       >
         {({
@@ -40,6 +41,7 @@ const Signup = () => {
           handleSubmit,
           setFieldValue,
           resetForm,
+          isSubmitting
         }) => (
           <Form className="form">
             <div className="name-div">
@@ -83,7 +85,7 @@ const Signup = () => {
                 <i
                   className={`${showPass ? "fa fa-eye" : "fa fa-eye-slash"}`}
                   onClick={handleShowPassword}
-                  
+
                 ></i>
               </div>
             </div>
@@ -120,7 +122,7 @@ const Signup = () => {
                 </select>
               </span>
             </div>
-            <button type="submit" className="btn btn-outline-primary">Submit</button>
+            <button type="submit" className="btn btn-outline-primary" disabled={isSubmitting}>Submit</button>
           </Form>
         )}
       </Formik>
